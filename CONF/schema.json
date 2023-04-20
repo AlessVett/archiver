@@ -1,0 +1,94 @@
+{
+  "schema": {
+    "t": {
+      "1": {
+        "0": {}
+      },
+      "2": {
+        "0":{},
+        "1": {
+          "0": {}
+        }
+      },
+      "3": {
+        "0": {},
+        "1": {
+          "0": {}
+        },
+        "2": {
+          "0": {},
+          "1": {
+            "0": {}
+          }
+        }
+      }
+    }
+  },
+  "example-schema": {
+    "example": {
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "The person's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The person's last name."
+        },
+        "age": {
+          "description": "Age in years which must be equal to or greater than zero.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "json-schema-of-example": {
+      "(example) 1": {
+        "(properties) 3": {
+          "(firstName) 2": {
+            "(type) 1": {
+              "value": "string",
+              "(end) 0": {}
+            },
+            "(description) 1": {
+              "value": "The person's first name.",
+              "(end) 0": {}
+            },
+            "(end) 0": {}
+          },
+          "(lastName) 2": {
+            "(type) 1": {
+              "value": "string",
+              "(end) 0": {}
+            },
+            "(description) 1": {
+              "value": "The person's last name.",
+              "(end) 0": {}
+            },
+            "(end) 0": {}
+          },
+          "(age) 3": {
+            "(description) 1": {
+              "value": "Age in years which must be equal to or greater than zero.",
+              "(end) 0": {}
+            },
+            "(type) 1": {
+              "value": "integer",
+              "(end) 0": {}
+            },
+            "(minimum) 1": {
+              "value": 0,
+              "(end) 0": {}
+            },
+            "(end) 0": {}
+          },
+          "(end) 0": {}
+        },
+        "(end) 0": {}
+      },
+      "(end) 0": {}
+    },
+    "string-schema-of-example": "(1 (3 (223 (11 0 0) 0 (11 0 0) 0 (111 0 0 0) 0 0) 0) 0) 0",
+    "schema-of-example": 13223110001100011100000000
+  }
+}

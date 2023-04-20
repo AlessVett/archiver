@@ -45,4 +45,4 @@ mtObject.addTx({
 });
 
 
-console.log(mtObject.__genMtRoot());
+console.log(mtObject);

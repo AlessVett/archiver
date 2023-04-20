@@ -14,6 +14,10 @@ module.exports = class {
         return crypto.createHash('sha256').update(JSON.stringify(object)).digest('hex');
     }
 
+    __getHexOfString(string) {
+        return crypto.createHash('sha256').update(string).digest('hex');
+    }
+
     __genMtId() {
         const schema = "00000000-0000-00000000-0000-000000000000";
         const arch = schema.split('-').map(value => value.length);
@@ -25,7 +29,7 @@ module.exports = class {
             })
             if (rule !== arch[arch.length - 1]) mtId += '-';
         });
-        return mtId
+        return mtId;
     }
 
     __genMtRoot() {
@@ -41,9 +45,9 @@ module.exports = class {
 
         let leaves = dLeaves.map(leaves => {
             if (leaves.length === 2) {
-                return `${leaves[0].script}|${leaves[1].script}`
+                return this.__getHexOfString(`${this.__getHexOfString(leaves[0].script)}|${this.__getHexOfString(leaves[1].script)}`);
             } else if (leaves.length === 1) {
-                return leaves[0].script
+                return this.__getHexOfString(leaves[0].script);
             } else {
                 throw new Error(`(MT.index.js[48]): Condition: leaves.length: ${leaves.length}`);
             }
@@ -52,9 +56,9 @@ module.exports = class {
         while(leaves.length > 1) {
             leaves = splitIntoChunk(leaves, 2).map(leaves => {
                 if (leaves.length === 2) {
-                    return `${leaves[0].script}|${leaves[1].script}`
+                    return this.__getHexOfString(`${leaves[0]}|${leaves[1]}`)
                 } else if (leaves.length === 1) {
-                    return leaves[0].script
+                    return leaves[0];
                 } else {
                     throw new Error(`(MT.index.js[48]): Condition: leaves.length: ${leaves.length}`);
                 }
@@ -68,17 +72,17 @@ module.exports = class {
         this.state.txs.push({
             tx: object,
             script: `${this.state.blId}:${this.state.mtId}:${this.__getHexOfObject(object)}`
-        })
+        });
 
-        // this.state.mtRoot = this.__genMtRoot();
+        this.state.mtRoot = this.__genMtRoot();
     }
 
     getTxs() {
-        return this.state.txs
+        return this.state.txs;
     }
 
     getTx(script) {
-        return this.state.txs.filter(tx => tx.script === script)[0]
+        return this.state.txs.filter(tx => tx.script === script)[0];
     }
 
     getState() {
