@@ -23,14 +23,19 @@ const mt = require('../M/B/MT');
  * console.log('getTx: ', mtObject.getTx((mtObject.getTxs())[0].script))
  */
 
+const t = require('../M/B/MT/T');
+
+const tObject = new t('test', 'test', 'test', 1, {
+    address: 'cJ3kVCEL6ht2FXERgrTd9JVgHrS3LiJTXGvDrpLN3hoanwB3fDjeMpugaA6YG4xPqPWC',
+    signature: {}
+}, {
+    address: 'dc1ktJZVFXVyoUF1yK9aVapVA1eHzGJkMkKohH6VQ3ffVz2pJyWBK3yYL2rk7HEMSZsS',
+    signature: {}
+}, [], {}, {});
 
 const mtObject = new mt('Test');
 
-mtObject.addTx({
-    title: 'test3',
-    value: 'test',
-    timestamp: String(Date.now())
-});
+mtObject.addTx(tObject);
 
 mtObject.addTx({
     title: 'test2',
@@ -43,6 +48,5 @@ mtObject.addTx({
     value: 'test',
     timestamp: String(Date.now())
 });
-
 
 console.log(mtObject);

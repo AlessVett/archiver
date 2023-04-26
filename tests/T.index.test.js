@@ -12,3 +12,4 @@ const tObject = new t('test', 'test', 'test', 1, {
 }, [], {}, {});
 
 console.log(tObject.getState());
+console.log(JSON.stringify(tObject))

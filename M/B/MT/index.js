@@ -49,7 +49,7 @@ module.exports = class {
             } else if (leaves.length === 1) {
                 return this.__getHexOfString(leaves[0].script);
             } else {
-                throw new Error(`(MT.index.js[48]): Condition: leaves.length: ${leaves.length}`);
+                throw new Error(`(MT.index.js[52]): Condition: leaves.length: ${leaves.length}`);
             }
         });
 
@@ -60,7 +60,7 @@ module.exports = class {
                 } else if (leaves.length === 1) {
                     return leaves[0];
                 } else {
-                    throw new Error(`(MT.index.js[48]): Condition: leaves.length: ${leaves.length}`);
+                    throw new Error(`(MT.index.js[63]): Condition: leaves.length: ${leaves.length}`);
                 }
             });
         }

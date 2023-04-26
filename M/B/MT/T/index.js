@@ -19,6 +19,7 @@ module.exports = class {
             },
             struct
         }
+        delete this.prevTId;
     }
 
     __checkAddress(address) {
