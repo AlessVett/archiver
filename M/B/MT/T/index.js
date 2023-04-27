@@ -49,10 +49,10 @@ module.exports = class {
             const {sign, publicKey} = signature;
 
             const verify = crypto.createVerify('sha256');
-            verify.update(this.state.prevTId);
+            verify.update(this.prevTId);
             verify.end();
 
-            result = verify.verify(publicKey, sign);
+            result = verify.verify(Buffer.from(publicKey, 'base64'), Buffer.from(sign, 'base64'));
         } catch (e) {
             return null;
         }

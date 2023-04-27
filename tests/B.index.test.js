@@ -1,22 +1,18 @@
-const crypto = require('crypto');
-const base58 = require('base-58');
-//const result = Array(1000).fill(null).map((_, i) => createHash('sha256').update(String.fromCharCode(i)).digest('hex'));
-//result.map(r => result.filter(x => x === r).length > 1 ? console.log(r) : null);
+const b = require('../M/B');
+const crypto = require("crypto");
+const base58 = require("base-58");
 
 const { publicKey, privateKey } = crypto.generateKeyPairSync("ec", {
     namedCurve: 'secp384r1',
     publicKeyEncoding: {
         type: 'spki',
-        format: 'der'
+        format: 'pem'
     },
     privateKeyEncoding: {
         type: 'pkcs8',
-        format: 'der'
+        format: 'pem'
     }
 });
-
-console.log(publicKey.toString('hex'))
-console.log(privateKey.toString('hex'))
 
 let _1 = crypto.createHash('sha256').update(publicKey).digest('hex');
 let _2 = crypto.createHash('sha256').update(_1).digest('hex');
@@ -28,8 +24,29 @@ let _6 = `${_3}${Buffer.from(_5).subarray(0, 8)}`;
 let _8 = base58.encode(Buffer.from(_6));
 
 console.log(`Address (${_8.length}): `, _8);
-console.log(`Checksum (${Buffer.from(_5).subarray(0, 8).length}): `, `${Buffer.from(_5).subarray(0, 8)}`);
-console.log(`From Base58 (${Buffer.from(base58.decode(_8)).toString('ascii').length}): `, Buffer.from(base58.decode(_8)).toString('ascii'));
 
-console.log(__dirname)
+const sign = crypto.createSign('sha256');
+sign.update('000000-00000-0000-000-00-0');
+sign.end();
 
+console.log(publicKey)
+
+let owner = {
+    address: _8,
+    signature: {
+        sign: (sign.sign(privateKey)).toString('base64'),
+        publicKey: Buffer.from(publicKey).toString('base64')
+    }
+}
+console.log(owner)
+
+const verify = crypto.createVerify('sha256');
+verify.update('000000-00000-0000-000-00-0');
+verify.end();
+
+console.log(verify.verify(Buffer.from(owner.signature.publicKey, 'base64'), Buffer.from(owner.signature.sign, 'base64')));
+
+
+let bObject = new b(owner);
+
+console.log(bObject)

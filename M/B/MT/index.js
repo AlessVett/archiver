@@ -68,7 +68,9 @@ module.exports = class {
         return leaves[0];
     }
 
-    addTx(object) {
+    addTx(object, blId) {
+        this.state.blId = blId;
+
         this.state.txs.push({
             tx: object,
             script: `${this.state.blId}:${this.state.mtId}:${this.__getHexOfObject(object)}`
