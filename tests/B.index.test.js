@@ -49,4 +49,4 @@ console.log(verify.verify(Buffer.from(owner.signature.publicKey, 'base64'), Buff
 
 let bObject = new b(owner);
 
-console.log(bObject)
+console.log(bObject.state.bls)

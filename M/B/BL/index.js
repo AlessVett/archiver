@@ -8,7 +8,7 @@ module.exports = class {
         this.state = {
             bId,
             pH,
-            H,
+            H: H++,
             timestamp: Date.now(),
             difficult: 4
         }
